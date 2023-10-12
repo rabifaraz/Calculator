@@ -101,3 +101,45 @@ let typed = '0';
             // Check if the character is in the list of valid operators
             return operators.includes(char);
         }
+
+
+// Listen for keydown events on the entire document
+document.addEventListener("keydown", function(event) {
+    const key = event.key;
+    
+    switch (key) {
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+            appendNumber(parseInt(key));
+            break;
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+        case "%":
+            appendOperator(key);
+            break;
+        case ".":
+            appendDecimalPoint();
+            break;
+        case "Enter":
+            calculateResult();
+            break;
+        case "Backspace":
+            clearEntry();
+            break;
+    }
+    
+    // Prevent the default behavior for certain keys to avoid unwanted side effects
+    if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", "%", ".", "Enter", "Backspace"].includes(key)) {
+        event.preventDefault();
+    }
+});
